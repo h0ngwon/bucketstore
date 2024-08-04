@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ApiResponse } from "../types/data.interface";
+import { SortOption } from "../constants";
 
 interface DataParams {
   length?: number;
-  type?: 'newest' | 'low_price' | 'high_price' | 'high_discount_rate' | 'best';
+  type?: keyof typeof SortOption;
   category?: number;
   page?: number;
 }

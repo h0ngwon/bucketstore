@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import Content from "./components/layout/Content";
+import MobileHeaderWithTabs from "./components/layout/MobileHeader";
 import MobileNavbar from "./components/layout/MobileNavbar";
 import Navbar from "./components/layout/Navbar";
 import Sidebar from "./components/layout/Sidebar";
@@ -47,6 +48,7 @@ function App() {
 	return (
 		<>
 			<Navbar />
+			<MobileHeaderWithTabs />
 			<Title />
 			<div className="flex flex-row">
 				<div className="hidden sm:block w-[360px]">
