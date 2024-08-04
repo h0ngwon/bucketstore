@@ -1,15 +1,23 @@
-export const likeProduct = async (productId: string): Promise<boolean> => {
-	const response = await fetch("http://localhost:3001/like", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ productId }),
-	});
+import axios from "axios";
 
-	if (!response.ok) {
+export const likeProduct = async (productId: string): Promise<boolean> => {
+	try {
+		const response = await axios.post(
+			"http://localhost:3001/like",
+			{ productId },
+			{
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}
+		);
+
+		if (response.status !== 200) {
+			throw new Error("Failed to like the product");
+		}
+
+		return true;
+	} catch (error) {
 		throw new Error("Failed to like the product");
 	}
-
-	return response.ok;
 };
