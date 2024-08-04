@@ -9,6 +9,9 @@
 # 폴더 구조
 ```
 📦src
+ ┣ 📂apis
+ ┃ ┣ 📜data.ts
+ ┃ ┗ 📜like.ts
  ┣ 📂components
  ┃ ┣ 📂layout
  ┃ ┃ ┣ 📜Content.tsx
@@ -17,8 +20,10 @@
  ┃ ┃ ┣ 📜Navbar.tsx
  ┃ ┃ ┗ 📜Sidebar.tsx
  ┃ ┣ 📜Card.tsx
+ ┃ ┣ 📜FilterButton.tsx
  ┃ ┣ 📜Select.tsx
- ┃ ┗ 📜Title.tsx
+ ┃ ┣ 📜Title.tsx
+ ┃ ┗ 📜TopButton.tsx
  ┣ 📂hooks
  ┃ ┣ 📜useData.ts
  ┃ ┣ 📜useIntersection.ts
