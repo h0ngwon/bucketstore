@@ -29,7 +29,7 @@ const Content = ({ products, loadMore, onSortChange }: Props) => {
 	return (
 		<div className="sm:px-5 flex flex-col">
 			<div className="flex justify-between items-center mb-2.5 text-[13px] font-bold">
-				{products.length > 0 && <div>{`${products.length}개`}</div>}
+				<div>{`${products.length}개`}</div>
 				<Select value={sortOption} onChange={handleSortChange} />
 			</div>
 			<div className="grid grid-cols-2 gap-x-[1px] gap-y-[20px] md:gap-y-[60px] sm:grid-cols-4 lg:grid-cols-4">
