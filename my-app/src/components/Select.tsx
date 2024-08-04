@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { FaSort } from "react-icons/fa";
 import { twMerge } from "tailwind-merge"; // Import twMerge
 import { SortOption } from "../constants";
@@ -12,26 +12,32 @@ const Select = ({ value, onChange }: SelectProps) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const ref = useRef<HTMLDivElement>(null);
 
-	const handleOptionClick = (option: keyof typeof SortOption) => {
-		const event = {
-			target: { value: option },
-		} as React.ChangeEvent<HTMLSelectElement>;
-		onChange(event);
-		setIsOpen(false);
-	};
-
-	const handleClickOutside = (event: MouseEvent) => {
-		if (ref.current && !ref.current.contains(event.target as Node)) {
+	const handleOptionClick = useCallback(
+		(option: keyof typeof SortOption) => {
+			const event = {
+				target: { value: option },
+			} as React.ChangeEvent<HTMLSelectElement>;
+			onChange(event);
 			setIsOpen(false);
-		}
-	};
+		},
+		[onChange]
+	);
+
+	const handleClickOutside = useCallback(
+		(event: MouseEvent) => {
+			if (ref.current && !ref.current.contains(event.target as Node)) {
+				setIsOpen(false);
+			}
+		},
+		[ref]
+	);
 
 	useEffect(() => {
 		document.addEventListener("mousedown", handleClickOutside);
 		return () => {
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
-	}, []);
+	}, [handleClickOutside]);
 
 	return (
 		<div ref={ref} className="relative w-[120px]">

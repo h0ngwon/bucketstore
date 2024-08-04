@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import useLike from "../hooks/useLike";
 import { Product } from "../types/data.interface";
@@ -38,4 +39,4 @@ const Card = ({ product }: Props) => {
 	);
 };
 
-export default Card;
+export default memo(Card);

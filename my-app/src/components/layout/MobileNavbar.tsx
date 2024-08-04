@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { IoIosHeart, IoIosHome, IoIosMenu, IoIosPerson } from "react-icons/io";
 import { IoPricetagOutline } from "react-icons/io5";
 
@@ -6,14 +6,14 @@ const MobileNavbar = () => {
 	const [isVisible, setIsVisible] = useState(true);
 	const [lastScrollY, setLastScrollY] = useState(0);
 
-	const handleScroll = () => {
-		if (window.scrollY > lastScrollY) {
-			setIsVisible(false);
-		} else {
-			setIsVisible(true);
-		}
-		setLastScrollY(window.scrollY);
-	};
+  const handleScroll = useCallback(() => {
+    if (window.scrollY > lastScrollY) {
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+    }
+    setLastScrollY(window.scrollY);
+  }, [lastScrollY]);
 
 	useEffect(() => {
 		window.addEventListener("scroll", handleScroll);

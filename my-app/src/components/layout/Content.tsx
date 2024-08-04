@@ -29,24 +29,24 @@ const Content = ({ products, loadMore, onSortChange }: Props) => {
 		[setSortOption, onSortChange]
 	);
 
-	const scrollToTop = () => {
+	const scrollToTop = useCallback(() => {
 		window.scrollTo({ top: 0, behavior: "smooth" });
-	};
+	}, []);
 
-	const handleScroll = () => {
+	const handleScroll = useCallback(() => {
 		if (window.scrollY === 0) {
 			setShowScrollToTop(false);
 		} else {
 			setShowScrollToTop(true);
 		}
-	};
+	}, []);
 
 	useEffect(() => {
 		window.addEventListener("scroll", handleScroll);
 		return () => {
 			window.removeEventListener("scroll", handleScroll);
 		};
-	}, []);
+	}, [handleScroll]);
 
 	return (
 		<div className="sm:px-5 flex flex-col mb-[60px]">
