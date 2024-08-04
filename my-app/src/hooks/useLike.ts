@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { likeProduct } from "../apis/like";
 import { useLikesStore } from "../store/likes";
 
 const useLike = (productId: string) => {
@@ -7,22 +8,15 @@ const useLike = (productId: string) => {
 
 	const handleLike = async () => {
 		try {
-			const response = await fetch("http://localhost:3001/like", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
+			const success = await likeProduct(productId);
 
-			if (response.ok) {
+			if (success) {
 				if (isLiked) {
 					removeLike(productId);
 				} else {
 					addLike(productId);
 				}
 				setIsLiked(!isLiked);
-			} else {
-				console.error("Failed to like the product");
 			}
 		} catch (error) {
 			console.error("Error liking the product:", error);

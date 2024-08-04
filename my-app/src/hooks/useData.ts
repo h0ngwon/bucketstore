@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { ApiResponse } from "../types/data.interface";
 import { SortOption } from "../constants";
+import { fetchData } from "../apis/data";
 
 interface DataParams {
   length?: number;
@@ -15,25 +15,18 @@ const useData = ({ length = 12, type = 'newest', category = 25, page = 1 }: Data
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const getData = async () => {
       setError(null);
 
       try {
-        const response = await axios.get<ApiResponse>('http://localhost:3001/api', {
-          params: {
-            length,
-            type,
-            category,
-            page,
-          },
-        });
-        setData(response.data);
+        const result = await fetchData({ length, type, category, page });
+        setData(result);
       } catch (error) {
         setError('Error fetching data');
       }
     };
 
-    fetchData();
+    getData();
   }, [length, type, category, page]);
 
   return { data, error };
