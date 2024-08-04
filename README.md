@@ -48,8 +48,8 @@
 * express
 
 # 실행방법
-<b>서버 실행방법</b>
+## 서버 실행방법
 backend 폴더로 이동 후 ```node proxyServer.js``` 명령어 실행
 
-<b>프론트 실행방법</b>
+## 프론트 실행방법
 my-app 폴더로 이동 후 ```yanr start``` 명령어 실행
