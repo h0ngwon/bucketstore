@@ -28,11 +28,11 @@ const MobileHeader = () => {
 
 const CategoryTabs = () => {
 	return (
-		<div className="flex overflow-x-auto p-4 space-x-2">
+		<div className="flex overflow-x-auto p-4 gap-1 flex-none">
 			{categories.map((category, index) => (
 				<button
 					key={index}
-					className={`px-4 py-2 rounded-full border ${
+					className={`flex flex-none text-[13px] border-black rounded-full border pt-[6px] px-[15px] pb-[5px] ${
 						index === 0
 							? "bg-black text-white"
 							: "bg-white text-black"
