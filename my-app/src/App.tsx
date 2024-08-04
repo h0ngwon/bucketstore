@@ -26,6 +26,15 @@ function App() {
 		setPage((prevPage) => prevPage + 1);
 	}, []);
 
+	const handleSortChange = useCallback(
+		(selectedSortOption: keyof typeof SortOption) => {
+			setSortOption(selectedSortOption);
+			setPage(1);
+			setProducts([]);
+		},
+		[setSortOption, setPage, setProducts]
+	);
+
 	useEffect(() => {
 		if (data?.data?.data?.body) {
 			setProducts((prevProducts) => [
@@ -34,12 +43,6 @@ function App() {
 			]);
 		}
 	}, [data]);
-
-	const handleSortChange = (selectedSortOption: keyof typeof SortOption) => {
-		setSortOption(selectedSortOption);
-		setPage(1);
-		setProducts([]);
-	};
 
 	if (error) {
 		return <div>{error}</div>;
